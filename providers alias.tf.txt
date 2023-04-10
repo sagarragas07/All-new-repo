@@ -1,0 +1,20 @@
+provider "aws" {
+  region = "us-east-1"
+}
+
+provider "aws" {
+  alias  = "west"
+  region = "us-west-2"
+}
+
+
+provider "aws" {
+  region     = "us-west-2"
+  access_key = "my-access-key"
+  secret_key = "my-secret-key"
+}
+
+$ export AWS_ACCESS_KEY_ID="anaccesskey"
+$ export AWS_SECRET_ACCESS_KEY="asecretkey"
+$ export AWS_REGION="us-west-2"
+$ terraform plan

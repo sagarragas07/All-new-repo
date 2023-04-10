@@ -1,0 +1,60 @@
+#finding the largest number from given list
+list =  [6,5,1,2,3,4,9]
+list.sort()
+print("first largest element is:', list[-1])         #9
+
+#printing unique values (by list comperhension)
+list =  [6,5,1,2,3,4,9,6,5,1]
+unique = []
+
+for i in list:
+	if i in uniqe:
+		continue
+	else:
+		unique.append(i)
+print(unique)                             #(6,5,1,2,3,4,9)
+
+a = 1
+	if a == 1:
+print(s)
+	else: 
+print(y)                                  #1
+
+#converting int to string
+a = 1
+print(a)
+b = str(a)
+print(type(b))                            #str
+
+
+#printing by iter method
+a = "apple"
+b = iter(a)
+print(next(b))           #a
+print(next(b))           #p
+print(next(b))           #p
+print(next(b))           #l
+print(next(b))           #e
+
+#print revers order
+txt = "Hello World"[::-1]
+print(txt)                           #dlroW olleH
+
+
+
+a = [1,2,3,4,5,6,3,4]
+a = [1,2,3,4,5,6,3,4]
+duplicates = []
+for i in a:
+    if a.count(i) > 1 and i not in duplicates:
+         duplicates.append(i)
+print(duplicates)                                    #[3, 4]
+
+a = "a,b,c,d"
+print([a])                                               #['a,b,c,d']
+
+a = [1,2,3,4,5,6,3,4]
+print(a[3])                                            #4
+
+a = 23232
+print(str(a))                                          #str
