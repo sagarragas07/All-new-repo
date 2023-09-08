@@ -1,3 +1,5 @@
+#Beliver01:-youtube
+
 #Database:-Db is an organized collection of structured information, or data, typically stored electronically in a computer system.
 #to make the data preserved db is used.the output will be stored in DB.
 
@@ -5,15 +7,17 @@
 #1)File handling :-this is previously used this is slowly      platforms
 #2)Database:-this is new & this is fast 1)RDBMS:-Relational DB tools(mssql,mysql,oracle,postgresql,sqlite) 2)NOSQL:-Non Relational DB tools(DynomaDB,DocumentDB,MangoDB) tools used for create,read,update,delete the data in DB
 
-#RDBMS- SQL(structured query language)this is programming language used to interact with DB.this works on tables(mssql,mysql,oracle,postgresql) {mysql is easy to use}
+#RDBMS(Relational DataBase Management srvc)- SQL(structured query language)this is programming language used to interact with DB.this works on tables(mssql,mysql,oracle,postgresql) {mysql is easy to use}
 #install mysql workbench = with password we have to give.
 
 #sql is used in database,table,data for accessing(reading) and manipulating(add/remove) the data 
 #Sub languages in SQL Server:-sql commands
-#1)Data Definition language:-Creation of DB,Creation of Tables,alter a table,drop of Tables,Trancate. (DDL)
-#2)Data Manipulation language:-INSERT,SELECT,DELETE,UPDATE (DML)
-#3)Data control language:-grant,revoke.SELECT Query (USED TO ACCESING THE DATA) (DCL)
-#4)Transaction control language:-SAVE,COMMIT,ROLLBACK,UNDO (TCL)
+#1)Data Definition language(DDL):-Creation of DB,Creation of Tables,alter a table,drop of Tables,Trancate,rename. (DDL)
+#2)Data Manipulation language:(DML)-INSERT,SELECT,DELETE,UPDATE (DML)
+#3)Data control (or) query language(DCL):-grant,revoke.SELECT Query (USED TO ACCESING THE DATA) (DCL)
+#4)Transaction control language(TCL):-SAVE,COMMIT,ROLLBACK,UNDO (TCL)
+#5)Data Query language(DQL):SELECT
+#contstrains:-primary key,foreign key,check,unique,default,not null. 
 
 #Creation of DB:- 1st create a file and save it,CREATE DATABASE First;#DB created, USE First;#DB activited, DROP DATABASE First;#removes DB
 
@@ -21,14 +25,14 @@
 
 #DATA types in SQL:-   
 #1)exact:-INT,TINYINT,SMALLINT,BIGINT
-#2)DECIMAL(10,2) .right ki 10digits, left ki 2digits.
+#2)DECIMAL(10.2) .right ki 10digits, left ki 2digits.
 #3)STRINGS(Char(20)fixed length)(nchar(20)unicode values ni can store)(varchar(20)variable length)(nvarchar(20)unicode values ni can store),TEXT.
 #4)TIME(HR:MIN:SEC) (3)give 3 millisec    (this can store time)
 #5)DATE(YEAR:MONTH:DAY)
-#6)binary:-(images)                                     #common datatypes that can support in every DB tools(float,int,char,varcahr,date,time,datetime)
+#6)binary:-(images)                                     #common data types that can support in every DB tools(float,int,char,varcahr,date,time,datetime)
 
-#Creation of Table in sql:-
-#CREATE DATABASE FIRST;                                  #create DB
+#Creation of Table in sql:-                --comments in sql
+#CREATE DATABASE FIRST;                                  #creates DB
 #USE FIRST;                                              #using that DB
 #CREATE TABLE student table(                             #creating a table
 #student_id int,
@@ -73,73 +77,72 @@
 #drop primary key;                               #this will drop the primary key from table
 
 ##How to remove column in a table and remove table in Database:-
-#use FIRST;                                                 #DROP:If we drop the table all the data and structure of table will be deleted.
+#use FIRST;                                                 
 #alter table student
 #rename column tudent_age to student_age;                    #this will rename the column name
 
-#ALTER TABLE student                                        #TRUNCATE:only data will be deleted(rows will not be deleted)
-#DROP COLUMN parent_name;                                   #the column will be removed from a table data and structure is dlted
-
-#TRUNCATE TABLE student;                                    #here only data will be deleted(rows data will be deleted)
+#ALTER TABLE student                                        
+#DROP COLUMN parent_name;                                   #DROP:If we drop the table all the data and structure of table will be deleted. 
+                                                            #the column will be removed from a table data and structure is dlted
+#TRUNCATE TABLE student;                                    #TRUNCATE:only data will be deleted(structure will not be deleted)
+                                                              
+                                                            #here only data will be deleted(rows data will not be deleted)
 
 #DROP TABLE student table;                                   #this will remove the table from Database
 
 #ALTER COMMAND:-(add column,delete column,modify datatype of existing column,set constraints like not null2,primary key,unique key,remove constraints etc..)
 
-##How to use select query:-(Data Query language)
+##3)How to use select query:-(Data Query language)
 #select student_id,student_name,student_age 
 #from student table;                                           #this shows the Data of students id,name & age.
 #
 #select * from student table;                                  #this will shows the total data in the table.
 
-
-##How to Insert Data to the Table in a Database:-(Data Manipulation language)
+##2)How to Insert Data to the Table in a Database:-(Data Manipulation language)
 #USE FIRST;
 #CREATE TABLE student table(
 #student_id int,
 #student_name varchar(40),
 #student_age int,
 #student_avg decimal(10,2)
-#);                                                                 #the table is created in database
+#);                                                           #the table is created in database
 #
-#INSERT INTO                                                  #1st method of inserting
+#INSERT INTO                                                  #1st method of inserting. if we need insert bata for specific colomuns then we have to mention their names
 #student table (student_id,student_name)
 #values (1,'student1'),(2,'student2'),
-#(3,'student3'),(4,'student4'),(5,'student5');                       #this will create 5rows in table
+#(3,'student3'),(4,'student4'),(5,'student5');               #this will create 5rows in table
 #
-#select * from student table;                                         #this will show the output created 3rows in table
+#select * from student table;                                 #this will show the output created 3rows in table
 #
-#INSERT INTO                                                 #2nd method of inserting
+#INSERT INTO                                                 #2nd method of inserting. if we are inserting the data in all columns than we dont need to mention thier names. 
 #Student table
 #values (5,'student5',25,89),(4,'student4',22,98),
 #(3,'student3',23,78),(2,'student2',21,89),
-#(1,'student1',78,99);                                                 #this will add 5 data rows to the table
+#(1,'student1',78,99);                                       #this will add 5 data rows to the table
 #  
-#select * from student table;                                        #this will show the output data created 5rows in table
+#select * from student table;                                #this will show the output data created 5rows in table
 
 
-##How to update Data in a table in a Database:-  by using where clause
-#select * from student table;                                        #checking purpose 
+#How to update Data in a table in a Database:-  by using where clause
+#select * from student table;                             #checking purpose 
 #  
-#UPDATE student table                              #(this is used at first in updating process bcz of security reasons)
+#UPDATE student table                                     #(this is used at first in updating process bcz of security reasons)
 #set student_age = 18
 #Where                                                    #without using condition we dont have to update
-#student_age is NULL;                                     #the age will be updated in null places in a table. 
+#student_age is NULL;                                     #the age will be updated in null places with 18 in the table. 
 #   
-#select * from student table;                             #checking purpose weather is created or not  
-# 
-#select * from student table;                             #checking purpose 
+#select * from student table;                             #checking purpose weather is created or not   
 #
 #UPDATE student table
 #set student_avg = 70
 #Where
-#student_age is NULL;                                        #the avg will be updated in null places in a table.
+#student_avg is NULL;                                        #the avg will be updated in null places in a table.
 # 
-#select * from student table;                                 #checking purpose weather is created or not  
+#select * from student table;                               #checking purpose weather is created or not  
 
-#update student set grade="pass" where perc>35 and perc<60;            #this wii add pass to >35 and <60 in table
-#update student set grade="first class" where perc>60 and perc<70;     #this wii add first cls to >60 and <70 in table
-#update student set grade="distinction" where perc>70;                 #this wii add distinction to >70;
+#update student set grade="pass" where perc>35 and perc<60;            #this will add pass to >35 and <60 in table
+#update student set grade="first class" where perc>60 and perc<70;     #this will add first cls to >60 and <70 in table
+#update student set grade="distinction" where perc>70;                 #this will add distinction to >70;
 
 ##How to delete Data in the table in a Database:- 
 #SET SQL_SAFE_UPDATES = 0                                   #(this is used at first in dlting process bcz of security reasons) 
@@ -148,13 +151,13 @@
 #DELETE FROM student table
 #WHERE student_avg<75                                        #(avg less than 75 will be dlted form table)  
 # 
-#select * from student table;                                #checking purpose weather is dlted or not 3members data dlted
+#select * from student table;                             #checking purpose weather is dlted or not 3members data dlted
 
 #delete from student where grade="pass";                   #this will delete the pass members data
 #delete from student where grade="first cls";              #this will delete the first cls members data
 #delete from student;                                      #this will delete rows
 
-##primary key in SQL:-(we will create over a column)(non duplicate - unique)(no null values)is unique i.e,(id)by using this can easily axis.
+#primary key in SQL:-(we will create over a column)(non duplicate - unique)(no null values)is unique i.e,(id)by using this can easily axis.
 #create  database university;
 #use university; 
 #create table student
@@ -211,7 +214,7 @@
 #select * from certificate_log                                        #checking the data
 
 ##constrains for Data in SQL:- 1)primary key(by default takes null) 2)Foreign key
-#3)not null:-(one particular column should accepet the not null values(no duplicates values))this constrains will say
+#3)not null:-(one particular column should accept the not null values(no duplicate values))this constrains will say
 #4)unique:-(one particular column that does not accept the duplicate values(this accept null values)) this will be used 
 #5)check:-(by conditioning the age will be accepting or not)
 #6)Default:-(it takes the value our given)
@@ -236,7 +239,6 @@
 # 
 #select * from student1;                              #this data will stored in the student1 table by using constrains
 
-
 #Where clause Explanation:- equailty,greater than,less than,between
 #select query:-this shows the data in the table
 #where clause:-by using this we can delete(we dlt our needy) and update    
@@ -249,7 +251,7 @@
 #    age int,
 #    marks int,
 #    gender varchar(10),
-#    primary key (id)                         #the new student2table is created
+#    primary key (id)                         #the new student2 table is created
 # ); 
 #  
 #insert into student2
@@ -279,33 +281,33 @@
 
 
 #select query is used for filtering purpose:-
-#select * from student2;                       #this will shows the data in the table
-#desc student2;                                #this will show the pattern of table
-#select distinct sname from student2;          #this show the different terms in table(repeated values removed)
-#select * from student2 where perc>85          #this shows the less then 85% in table
-#select * from student where perc>70 and id>103;      #this will show the less 70% and id above 103
+#select * from student2;                              #this will shows the data in the table
+#desc student2;                                       #this will show the pattern of table
+#select distinct sname from student2;                 #this show the different terms in table(repeated values removed)
+#select * from student2 where perc>85                 #this shows the less then 85% in table
+#select * from student where perc<70 and id>103;      #this will show the less 70% and id above 103
 #select * from student where perc>70 or id>103;       #this will show the grt 70% or id>103;
-#select * from student where not perc>90;             #this will show the less 90%  data
+#select * from student where not perc<90;             #this will show the less 90%  data
 #select * from student order by perc;                 #this show the order lower to higher
 #select * from student order by perc desc;            #this show the order higher to lower
 #select * from student where perc>80 limit 3;         #this will show the above 80 3people data
 #select * from student order by perc desc limit 3;    #this will show the top3 perc in table
-#select * from student order by perc limit 3;     #this will show the last3 perc in table
-#select * from student where sname like 's%';     #this show the starting s letter from the table
-#select * from student where sname like '%ee%';     #this show the middle ee letter from the table
-#select * from student where sname like '%I';     #this show the starting I ending from the table
-#select * from student where perc in (90,99,88,75);     #this show the perc in from the table
-#select * from student where perc between 85 and 95;     #this show the perc in between the values 85 to 95
-#select name,age,gender from student2;         #this will print only 3columns data
+#select * from student order by perc limit 3;         #this will show the last3 perc in table
+#select * from student where sname like 's%';         #this show the starting s letter from the table
+#select * from student where sname like '%ee%';       #this show the middle ee letter from the table
+#select * from student where sname like '%I';         #this show the starting I ending from the table
+#select * from student where perc in (90,99,88,75);   #this show the perc in from the table
+#select * from student where perc between 85 and 95;  #this show the perc in between the values 85 to 95
+#select name,age,gender from student2;                #this will print only 3columns data
 #select * from student2
 #where
 #id = 15;                                #this will show the id 15th data in table (by using where clause equailty check)
 #select * from student2
 #where
-#age < 18;                                #this will show the age above 18 (greater than)
+#age > 18;                                #this will show the age above 18 (greater than)
 #select * from student2
 #where
-#age > 18;                               #this will show the age less 18 (less than)
+#age < 18;                               #this will show the age less 18 (less than)
 #select * from student2
 #where
 #age between 20 and 25;                  #this will show the age between (20-25)
@@ -317,7 +319,7 @@
 #age in (20,23,25);                     #this will show the age of 20,23,25
 #select * from student2
 #where
-#name like '%1';                        #this will show the name of (last endimg with1) 
+#name like '%1';                        #this will show the name of (last ending with1) 
 #select * from student2
 #where
 #name like '%1%';                      #this will show the name of (middle with1)
@@ -343,9 +345,9 @@
 #from student2;                          #this will give the total count in table by duplicate name.
 #select count(*) as no_of_students
 #from student2
-#where age =23;                        #this will show the age 23 people in table
+#where age =23;                          #this will show the age 23 people in table
 #select avg(marks) as marks_avg
-#from student2;                        #this will show the marks avg
+#from student2;                          #this will show the marks avg
 #select avg(age) as age_avg
 #from student2   
 #where 
@@ -362,7 +364,7 @@
 #from student2   
 #where 
 #age = 25;                             #this will show the min marks of age 25 
-#select distinct age from student2;       #this will show the distinct ages in table (this avoid the duplicate values) 
+#select distinct age from student2;    #this will show the distinct ages in table(this avoid the duplicate values) 
 
  
 #joins in sql:- used for joining the data between mulitiple tables(joins).
@@ -371,6 +373,7 @@
 #3)right join:-common data + right side data is displayed
 #4)full outer join(not supporting in mysql):-all data in tables is considered 
 #5)self joins 
+
 #1)inner join:- 
 #creating 4 tables stu_joins,mar_joins,sports_join,ncc_nssjoins  
 #create table stu_join                   
@@ -394,6 +397,7 @@
 #('stu_9',18),
 #('stu_10',17);
 #select * from stu_join;                         #checking weither inserted or not
+
 #create table mar_join
 #(
 #	id int auto_increment,
@@ -415,6 +419,7 @@
 #(97,2),
 #(9,1);
 #select * from mar_join;                         #checking weither inserted or not
+
 #create table sports_join
 #(
 #	id int auto_increment,
@@ -435,6 +440,7 @@
 #('vollyball'),
 #('basket ball');
 #select * from sports_join;                         #checking weither inserted or not
+
 #create table nccnss_join
 #(
 #	id int auto_increment,
@@ -455,19 +461,22 @@
 #('nss'),
 #('nss'); 
 #select * from sports_join;                         #checking weither inserted or not
-#1)inner join:- stu_join and ,mar_join  combining (only common data joined data displayed)
+
+#1)inner join:-stu_join and mar_join  combining (only common data joined data displayed)
 #select * from 
 #stu_join as t1
 #inner join
 #mar_join as t2
 #on 
 #t1.id = t2.id;                   #the data will be joined t1 and t2(stu_join and mar_join) now 2 tables joined and shown
+
 #select t1.id,t1.name,t2.marks,t2.ranks from 
 #stu_join as t1
 #inner join
 #mar_join as t2
 #on 
 #t1.id = t2.id;                       #this will show the t1 and t2 mixed result (id,name,marks,ranks)
+
 #select * from
 #stu_join as t1
 #inner join
@@ -488,7 +497,7 @@
 #right join
 #nccnss_join as t2
 #on 
-#t1.id = t2.id;                  #this will show the right table and combined data in table
+#t1.id = t2.id;                  #this will show the right table and combined data in both the tables
 # 
 #4)full outer join:-(this wont support in mysql)(this supports in mssql) (this show common data and 2 tables full data will be shown )
 #select * from 
@@ -504,7 +513,7 @@
 #inner join 
 #mar_join as t2
 #on
-#t1.marks < t2.marks;         (this will show the marks more than table2 then joined and shown)
+#t1.marks < t2.marks;              #(this will show the marks more than table2 then joined and shown)
 #select t1.id,count(t1.id) as no_of_student_above
 #from
 #mar_join as t1
@@ -517,7 +526,6 @@
 #order by
 #t1.id;                 (this will show the data of t1 less than t2 marks table with index is shown)(ex of marks move then one self) 
  
-
 #order by clause in sql:-(this gives order ascending or decending arranging the data in table) 
 #use first;
 #create table ordr_byc
@@ -542,20 +550,19 @@
 #('stu_8',18,90,'cricket'),
 #('stu_9',18,65,'football'),
 #('stu_10',17,97,'cricket');            #the data is inserted
-#select * from ordr_byc                #we get the data what we inserted 
+#select * from ordr_byc                 #we get the data what we inserted 
 #select name,age,marks
 #from ordr_byc
-#order by marks;                       #this will show the marks in ascending order by defalut 
+#order by marks;                        #this will show the marks in ascending order by defalut 
 #select name,age,marks
 #from ordr_byc
-#order by marks desc;                 #this will show the marks in descnding order
+#order by marks desc;                  #this will show the marks in descnding order
 #select name,age,marks
 #from ordr_byc
-#order by marks desc,age desc;           #here it will show marks and age cretieria  
+#order by marks desc,age desc;         #here it will show marks and age cretieria  
 #select name,age,marks
 #from ordr_byc
 #order by marks desc,age desc,name desc;    #here it will show marks,age,name in desc.
- 
  
 #groupby clause:-
 #create table group_by
@@ -618,7 +625,7 @@
 
 #ranks in mysql:-3types of functions auto generted
 #1)rank() :-duplicate rank is counted here(it counts nmbrs and give after rank)
-#2)row_number() :- different rank
+#2)row_number() :-different rank
 #3)dense_rank() :-duplicate ranks not counted(dont count nmbrs)
 #1)
 #select 
@@ -731,7 +738,7 @@
 #('emp_16',17,9770,'female'),
 #('emp_17',18,3665,'female');               #the data is inserted
 #select * from co_releted_sq                 #checking
-#2) now find the nth highest salary of the employee table.(using co_releted subqueries):-
+#2)now find the nth highest salary of the employee table.(using co_releted subqueries):-
 #select salary as nth_highest_salary
 #from 
 #co_related_sq as t1
@@ -755,7 +762,7 @@
 
 
 #practice problem-2:-(we use group by and order by in this problem)(hacker ranker)
-#in this an employee total earning to be their monthly salary * months worked. and the max total earnings to be the ax earning for employee in the parctice_2 table. write a query to find the max total earning for all employees as well as total no.of employees who have max total earnins. then print these values as 2 space separated integers.   
+#in this an employee total earning to be their monthly salary * months worked. and the max total earnings to be the x earning for employee in the parctice_2 table. write a query to find the max total earning for all employees as well as total no.of employees who have max total earnins. then print these values as 2 space separated integers.   
 #create a table and insert the data inside the table.and check select * from parctice_2
 #select months*salary as earning,count(*)
 #from parctice_2
@@ -891,34 +898,80 @@
 #salary > 8000;                            #by this we can access that table
 # 
 # 
+#select * 
+#FROM 
+#   order_table 
+#WHERE
+#   order_date = current_date()-1;               #we get the information yesterday orders. 
 # 
+#OLTP(Transactional app):(online transfer process)high vol of transactions,fast processing,Normalized data,many tables,
+#OLAP(Analytics reporting):(online analytic process)high vol of data,slow queries,denomalized data,fewer tables.  
 # 
+#Relational(sql DB): relational(column & rows)analtics(OLAP),      Non-relational(Nosql DB):Key-value,column-fammily,graph,Document. 
+#structure:DB management system,DB,schema(is a named collection of tables),Tables(is a collection of data which is organized in terms of rows & columns). 
 # 
+#select * from teachers
+#order by salary DESC;                                 #this shows the salary from high to low in table.
 # 
+#select * from teachers
+#order by school ASC, salary DESC;                     #this shows school names with alaphbet order & salary high to low. 
 # 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-#  
+#select * from teachers 
+#WHERE school = "st mathew's";                    #only the mathews school data filtered out.  
+#
+#select * from teachers
+#WHERE first_name ='Janet';                       #here we get the first name data from table.
+#
+#selet * from teachers
+#WHERE hire_date > '2000-01-01';                  #here we get the data which teacher hired date. 
+#
+#select * from teachers
+#where salary between '40000' and '65000';          #this query will show the salary data b/w 40 to 65
+#
+#select * from teachers
+#where salary > '60000'                         #this will show above 60k list
+#
+#create table data_time_types(
+#   timestamp_column timestamp with time zone,
+#   interval_column interval
+#);                       #this create a table
+#INSERT INTO data_time_types values
+#('2018-12-31 01:00 EST ','2days')
 #
 #
+#problems:-
+#select max(salary) from employee;          #50000  #this shows the max salary from the table. (max is aggregate function)
+#select employee_name from employee
+#   where salary=(select max(salary)from employee);             #this show person name and salary highest. 
+#select max (salary) from
+#   employee where salary <>(select max(salary)from employee);            #this shows the 2nd max salary from the table
+#select empolyee_name from employee
+#   where salary =(select max(salary)from 
+#   employee where salary <>(select max(salary)from employee);            #this shows the 2nd highest salary person name. 
 #
+#select dept,count(*) employee group by depatment;                        #this shows the department count of members.
 #
+#select depertment from employee group by depeartment having count(*)<2;       #this shows the employee count lessthan 2 compared with other groups. 
+#select emplyee name from employee where department  in
+#   (selecct department from employee group by department having count(*)<2);          #this shows the employe name 
 #
+#select min(salary) from employe;       #min 
+#select max(salary) from employe;       #max
+#select count(*)from employe;           #shows no.of 
+#select sum(salary) from employe;       #this show some of table values.
+#select distinct (sum(salary)) from employe;       #this show some of table values.(removes the distinct values)
+#select avg(salary) from employe;           #shows avg
 #
+#select employe name from          #use nested query 
+#   employe where Eid in (select distinct(Eid)from project);        #this name of emp.
 #
+#delete from student
+#   where id=1;                #this dlt the row 1 data
 #
+#select name,max(salary) as salary from employee
+#   where salary<>(select max(salary)from employee);                            #shows the 2nd highest nmbr. 
 #
+
 
 
 
