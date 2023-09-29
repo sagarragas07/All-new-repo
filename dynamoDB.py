@@ -61,6 +61,9 @@ v1.owner()
 
 
 
+
+
+
 #Fluentlife:-1)coffin Dancers,2)Japan's Batman,3)Child Prodigy
 #1)Ghana's Dancing Pallbearers:-for mourners wanting a more upbeat=marintha ulasanga undalanukune duhkgitula kosam
 #Mourners synonyms=Pallbearer,griever,sorrower,weeper, and bemoaner(Dhukinchuta). 
@@ -134,3 +137,40 @@ v1.owner()
 #Transition:change
 #Ethnic:connection with history,traditional
 #Inspiration:Motivated,influenced,follow
+
+
+#Resourceful
+#knowledeable
+#consistent
+#Observant
+#proactive
+#witty
+#gemerous
+#considerate
+#bright
+#creative
+#technical
+#strategic
+#lazy
+#Break a leg:-to wish somebody good luck
+#In hot water:-in a trouble 
+#Out of the blue:-all off sudeen
+#Shoot the moon:-to am high
+#Sky is the limit:-Aim high targeting
+#Miss the boat:-miss opportunity
+#By the book:-to follow a set of rules
+
+#Email Etiquettes:-refers to the principles of behavior. 
+#salutation:dear sir,
+#Excalmiation(!):-shock,exceting(dont use)
+
+#Ramming:-Roughly force
+#Extremist:-A person with religious views (Fanatic,rasical)
+#Fiasco:-A complete failure        (bust,failure,loser)
+#Integrity:-The quality of being honest. (honest,charter,fiber)
+
+#The car lost control and rammed into a tree,
+#Your study was a fiasco.
+#They do not want extremist violence to destroy their lives.
+#Personality function depends majorly on brain function integrity.
+#
