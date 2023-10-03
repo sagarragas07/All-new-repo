@@ -378,13 +378,28 @@
 #if[$wf_name.status -eq 0] then echo "workflow Execution Succrssful"
 #elif echo "workflow Execution failed"
 
-#SCD:-Slowly Changing Dimensions:- we will extract the data from source table and we load it into the target table.  we maintain it in a data warehouse
+#SCD:-Slowly Changing Dimensions:- we will extract the data from source table and we load it into the target table.  we maintain it in a data warehouse  (customer,product,account,user,employee,region,location,time,store,mercant). 
 #Dimension table:(Primary Key + Attributes)
 #To maintain the table as target used SCD:we have 3types
 #Type 1:-No history will be maintained simple update.       (when change happend in oltp side it updated in olap side also)
-#Type 2:-History will be maintaine d Row level history. (method1-falg,method2-version,method3-date)      ()
+#Type 2:-History will be maintained Row level history. (method1-falg,method2-version,method3-date(end date null,9999,2999))      ()
 #Type 3:-Recent history will be maintained Column level history. 
 #Surrogate key:-In addition to the natural key column(primary k column). in order to maintain the history we will maintain this column(this is unique column)
+#Version:-maintaining the previous version and present changes.
+
+#select column_names from T_customer_version where (cust_id,veraion) in (select cust_id,max(version) from T_customer_version group by cust_id);  To take the current records.  
+#Merchant:-
+#Type1:-No history will be maintained simple update. 
+#Type2:-History will be maintained Row lvl history.  (Method-1-Flag,Method-2-Version,Method-3-date).  (used most of the times)
+#Type3:-Recent history will be maintained. 
+
+#Workflow task:-we have different task here (session,command,Email,)this are re-useable(green mark visable(in this we cant modifiy in session lvl)) and non-reusabke tasks (decision task,assignment task,Timer task,control task,event wait,task,event raise,worklet,link tasks,session config,scheduler)
+#windows command:-echo >c: \informatica \touch.txt
+#linux command:-touch touch.txt
+#
+#
+#
+#
 #
 #
 #
@@ -407,14 +422,46 @@
 # 
 #In informatica we have 2 tables:-Dimensions & Fact Table(in enterprise DW):- 
 #1)Dimension Table(the tables surrounds the fact table(consists tranctional data) and make link by primary key)this has primary key:-1)Non measurable,2)Primary keys 
-#2)Fact Table(consists all transational Data taken key values from dimension tables)this has forigen key:-1)Measurable,2)Foreign keys 
+#2)Fact Table(consists all transational Data taken key values from dimension tables).this table contains normalized data .this has forigen key:-1)Measurable,2)Foreign keys 
 #
 #STAR Schema:-Fact Table(Forigen key) is surronded by Dimensions Tables(primary key).  In STAR Schema we have to load Dimension table at 1st then Fact table.(like a star shape)(slowly changing dimension)
+#Snow Flake Schema:-this has one-dimensional table that can be splited into multiple Dimensional tables.A Deenrmalized dimension table is splited into 1 or more tables,which results in normalization of dimensions. (one dimensional table refers to the other dimension table based on normalization)normalization to avoid data tenancy,duplicate. OLAP tables(De-normalized) in OLTP tables(normalized) 
+#Galaxy schema:-
 #
-#Data warehouse:-structured,processed.schema-on-write.expensive for large data vols.users business professionals.
+#Data warehouse:-structured,processed.schema-on-write.expensive for large data vols.users business professionals.is a relational DB which is specifically design for business transactional processing. this supports for decession making process. Business managers need a data warehouse for analysis the summaries of business.  Hence it is also called Decession Supporting System(DSC). 
+#1)Time Varient(supports the business managers in analysing business & comparing the business with different time periods),
+#2)Non-volatile(once data entered into the DWH it does not reflects to the change. Hence the data is static),
+#3)Integrated(wich stores the data in an integrated format,which is collected from multiple,operational DBs),
+#4)Subject oriented DB(which supports the business needs of middle manager(or)dept specific users.(this is defined as a collection of department specific business data)). 
+#Operational (OLTP DB):-It is designed to support business transactional processing. volatile data. current data. detailed data. less history(3-6months). supports normalization.defined with more no.of joints. designed for running the business. few indexeses. Entity relationship. 
+#Data warehouse(OLAP):-It is design to support decession making process. Non-volatile data. Historical data. summary data. supports denormalization. History data(5-10years). define with fewer joints. more indexes. dimenssional modeling.    
+#Enterprise dataware house stores the entire dept of data. Data mart s a subject oriented DB. Data mart is a subject of EDW.It stores the DEpt specific data .  
+#Data mart:-is a subset of an Enterprice DWH.is also a high performancequery structures. 
+#1)Dependent DM:-In a Top Down approach a data mart develop depends on enterprice DWH such DM are knowns a Dependent DM.
+#2)Independent DM:-In a bottom up approach a DM development is independent of DWH. 
+#Operational Data store(ODS):-An ODS is a integreated view of multiple operational DBS designed for business transactional process.  
 #Data Lake:-structured/semi-structured/unstructures,raw. schema-on-read. designed for low-cost storage. users data scientist. 
+#Data Acquisition:-It is a process of extracting  the relvant business information,transformation the data into a required business format & loading into the target system. (data extracting ,transforming, loading). 
 #
-#Snow Flake Schema:-this has one-dimensional table that can be splited into multiple Dimensional tables.(one dimensional table refers to the other dimension table based on normalization)normalization to avoid data tenancy,duplicate. OLAP tables(De-normalized) in OLTP tables(normalized) 
+#ETL Tools:-2 types 1)code based ETL(this can be developed using some programming lang(SQL/PL/SQL)).  2)GUI(can be design with a simple GUI,point & click drag & drop)ex(informatica,data srvcs,Oracle data integration,data stage,data manager,SSIS(SQL server integration srvc)). 
+#Data Extraction:-Its aprocess of reading the data from various types of sources. a)Relational sources(oracle,SQL srvr,DB2,Sybase) b)File sources(Flat file(test file),xml file) c)ERP sources(Sap,people soft,t.d-edwards) d)Legacy sources(main frames,AS 400,cobol files) 
+#Data transformation:-process of converting the data & integration the data into the required  business  format. A staging area is a temporary memory (or) buffer where data transformation activities takes place. 
+#a)data merging(process of integratingthe data from multiple sources into single output pipeline)horizontal(joints)source are having a diff data defination with the common field ,vertical(union)have similar data defination then such sources can be merge vertical using union.  
+#b)data cleansing(process of removing unwanted data,which is also known as filtering). process of changing inconsistent data into a consistent format. (removing duplicates,removing records which contains nulls).  
+#c)data scrubbing(process of deriving new attributes from existing source data defination)
+#d)data aggrigation(process of calculating the summaries from the detailed data). (sum)
+#Data Loading:-process of inserting the data into a target system. 2types:-1)Initial load(or) full load (process of loading data into an empty target tables.data from source inserts into the target tabel) 2)Incrementtal load(process of loading only new records after an intial load) 
+#ETL Plan:-An ETL Plan logicaly definers extraction transformation & loading. Types 1)source data defination,2)Target data definition,3)Transformation logic
+#ETL Repository:-is a brain of an ETL development system where you store the metadata such as source definition,Target defiition transformation logic,ETL plan etc.,
+#ETL server:it is a ETL engine which erforms extraction,transformation & loading according to ETL plan given.
+#Data moduler:-builds or design Data Bases process of designing DB is known as data modeling. the proscess of designing the DBs is known as data modeling. A Data modeler (or) DB Architec design the DBs using a GUI based DB desinging tool called ER win.  
+#Data warehouse designing types:-1)star schema 2)snowflake schema 3)galaxy schema(complex star schema,integrated schema,hybrid schema)
+#Normalization:-eliminating  duplicates. 
+#session:- A session is a task that runs mapping. 
+#work flow:-is start task that runs one or more sessions. the sessions can be run either in sequence or parallel. 
+#Sheduling:-is an adminstrative task that specifies the date & time to run the workflow
+#session log:-is created by integration srvc & stores in the repostery through repositery srvc. 
+#
 #ETl Tools:-Informatica,IBM-websphere Datastage,Microsoft-(SSLS(SQL server integrated srvcs)),SAP(BODS(Business objs Data srvcs)),oracle-(ODI(data integrator)),Talend Open Studio,Apache Nifi.
 #Data visualization Tools:-Tableau,Microsoft power BI,SAP BO,Quilck sight,Tibco Spotfire,google locker.  
 #
@@ -430,11 +477,42 @@
 #3)Slice and dice-Project & Select:-one dimension is selected, & a new sub-cube is created.  
 #4)Pivot(rotate)-Re-orient the cube:-converting Rows into column.(Rotate the data axes to provide a substiute presentation of data).  
 # 
+#Demensional modeling:-is a design methodolgy for designing data warehouses & data mart.this consists 3 phases to build the data model. 
+#1)conseptual modeling:-understanding the business requirement,identifying the lowest lvl grains,identifying attributes & entities.
+#2)logical modeling:-Design the table with required attributes using on rwin tool create relationships b/w the tables. 
+#3)physical modeling:-Define the tables in the DB to physically store the data
+#
+#ETL Development:-Design ETL plans using GUI based ETL tool such as informatica,Datastage etc.,
+#ETL Testing phase:-1)unit test,2)system testing,3)performance testing,4)UAT
+#Report Development phase:-Design the reports by fulfiling report requirement specifications use the following tools to design reports.(cognos,bussiness objs micro strategy)
+#Deployment:-Its a process of migrating the metadata from development environment to production environment. 
+#
 #Types of OLAP systems:-         (data modeling team will take care of it)
 #1)ROLAP:-Relational OLAP:-Is extended RDBMS along with multidimensional data mapping to perform the standard relational operation.
 #2)MOLAP:-Multidemensional OLAP:-Implements operations in multidimensional data.
 #3)HOLAP:-This approach the aggregated totals are stored in a multidimensional DB while the detailed data is stored in the RDB. this offers(ROLAP & MOLAP)
 #4)Others:-
+
+#Steps involving developing an ETL process:-
+#step1:-creation of source definition.
+#step2:-creation of Target definition.
+#step3:-Designing a mapping with or without transformation(implemented by designer)
+#step4:-create session for each mapping
+#step5:-create workflow to start sessions 
+#step6:-Excute workflow. 
+
+#Power center Repo:-is a relational DB which contains metadata required to perform extraction,transformation & loading
+#Local repo:-is the repo which alows you to share the metadata with in the repo across multiple users.
+#Global repo:-Meta data can be shared across multiple repos.
+#Repo srvc:-Is a multi threaded process which allows you to insert,update,dlt, & retrive metadata from repo. 
+#Integration srvc:-Reads mapping & session information from repo through repo srvc. This extracts the data from mappping sources, stores the data in a temp memory (or) buffer called stagging. where it applies the transformation rules that you configured in the mapping. 
+#Integration srvc have components like:-1)Reader(responsible for extracting data from mapping sources)a)Relational reader,b)File reader,c)XML reader.  
+#2)Data Transformation Manager(DTM):-This process the data according to the transformation logic given in the mapping. 
+#3)Writter:-It inserts the data in to the mapping targets. 
+
+
+
+
 
 #rep(repository srvc) & Is(integration srvc)
 #                                    (Integration srvc (data Movement))
